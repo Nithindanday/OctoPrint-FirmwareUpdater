@@ -1,4 +1,4 @@
-<div id="settings_plugin_firmwareupdater">
+<div id="settings_plugin_firmwareupdater_tab" data-bind="visible: enabled()">
 
     <div class="pull-right">
         <button class="btn btn-small" data-bind="click: showPluginConfig" title="{{ _('Plugin Configuration') }}"><i class="icon-wrench"></i></button>
@@ -6,7 +6,7 @@
 
     <h3>{{ _('Firmware Updater') }}</h3>
 
-    <form class="form-horizontal">
+    <form class="form-fluid">
 
         <div class="control-group" title="{{ _('Select the serial port where your printer is connected') }}">
             <label class="control-label">{{ _('Serial Port') }}</label>
@@ -18,19 +18,17 @@
         <div class="control-group">
             <label class="control-label">{{ _('... from file') }}</label>
             <div class="controls controls-row">
-                <div class="span8">
+                <div class="span4">
                     <div class="input-group controls-row">
-                        <span class="span3">
-                            <span class="btn input-group-btn fileinput-button">
-                                <span>{{ _('Browse...') }}</span>
-                                <input id="settings_firmwareupdater_selectFilePath" type="file" name="file" data-bind='attr: { accept: ".hex,.bin" }' data-url="{{ url_for("plugin.firmwareupdater.flash_firmware") }}">
-                            </span>
-                        </span>
-                        <span class="span9">
-                            <input class="input input-block-level" type="text" data-bind="value: firmwareFileName" disabled>
+                        <span class="btn input-group-btn fileinput-button pull-left">
+                          <span>{{ _('Browse...') }}</span>
+                          <input id="settings_firmwareupdater_selectFilePath" type="file" name="file" data-bind='attr: { accept: ".hex,.bin" }' data-url="{{ url_for("plugin.firmwareupdater.flash_firmware") }}">
                         </span>
                     </div>
                 </div>
+				<span class="span4">
+                    <input class="input input-block-level" type="text" data-bind="value: firmwareFileName" disabled>
+                </span>
                 <div class="span4">
                     <button class="btn btn-primary btn-block" data-bind="attr: {title: fileFlashButtonText}, click: startFlashFromFile, enable: firmwareFileName, css: {disabled: !firmwareFileName() || isBusy()}">{{ _('Flash from File') }}</button>
                 </div>
@@ -40,7 +38,7 @@
         <div class="control-group">
             <label class="control-label">{{ _('... from URL') }}</label>
             <div class="controls controls-row">
-                <div class="span8">
+                <div class="span4">
                     <input class="input-block-level" type="text" data-bind='value: firmwareFileURL, valueUpdate: "afterkeydown"'>
                 </div>
                 <div class="span4">
@@ -95,13 +93,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label">{{ _('Enable Tab') }}</label>
-                    <div class="controls">
-                        <label class="checkbox">
-                            <input type="checkbox" data-bind="checked: enabled">
-                        </label>
-                    </div>
+				<div class="control-group">
+					<label class="control-label">{{ _('Enable Tab?') }}</label>
+					<div class="controls">
+						<label class="checkbox">
+							<input type="checkbox" data-bind="checked: enabled">
+						</label>
+					</div>
 				</div>
                 <hr>
 

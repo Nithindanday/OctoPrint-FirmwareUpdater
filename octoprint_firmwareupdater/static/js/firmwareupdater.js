@@ -2,12 +2,15 @@ $(function() {
     function FirmwareUpdaterViewModel(parameters) {
         var self = this;
 
+        $('#tab_plugin_firmwareupdater_link').hide();
+
         self.settingsViewModel = parameters[0];
         self.loginState = parameters[1];
         self.connection = parameters[2];
         self.printerState = parameters[3];
 
         // General settings
+        self.tabEnabled = ko.observable();
         self.configFlashMethod = ko.observable();
         self.showAdvancedConfig = ko.observable(false);
         self.showAvrdudeConfig = ko.observable(false);
@@ -179,6 +182,14 @@ $(function() {
                 }
             }
          });
+
+        self.onBeforeBinding = function() {
+			self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.tab_enabled());
+        }
+
+        self.onAfterBinding = function() {
+           _enableTab(self.tabEnabled());
+        }
 
         self.onStartup = function() {
             self.selectFilePath = $("#settings_firmwareupdater_selectFilePath");
@@ -432,6 +443,7 @@ $(function() {
 
         self.showPluginConfig = function() {
             // Load the general settings
+            self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.enable_tab());
             self.configFlashMethod(self.settingsViewModel.settings.plugins.firmwareupdater.flash_method());
             self.configPreflashCommandline(self.settingsViewModel.settings.plugins.firmwareupdater.preflash_commandline());
             self.configPostflashCommandline(self.settingsViewModel.settings.plugins.firmwareupdater.postflash_commandline());
@@ -502,6 +514,10 @@ $(function() {
         self.onConfigClose = function() {
             self._saveConfig();
 
+            self.showPopup("success", gettext("Reload Web Interface"), "Please reload the web interface if enabled/disabled the Tab.");
+			_enableTab(self.tabEnabled());
+            self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.tab_enabled());	
+			
             self.configurationDialog.modal("hide");
             self.alertMessage(undefined);
             self.showAlert(false);
@@ -512,6 +528,7 @@ $(function() {
                 plugins: {
                     firmwareupdater: {
                         flash_method: self.configFlashMethod(),
+                        tab_enabled: self.tabEnabled(),
                         avrdude_path: self.configAvrdudePath(),
                         avrdude_conf: self.configAvrdudeConfigFile(),
                         avrdude_avrmcu: self.configAvrdudeMcu(),
@@ -551,6 +568,13 @@ $(function() {
             };
             self.settingsViewModel.saveData(data);
         };
+
+        self._enableTab = function(value) {
+            if (value)
+                $('#tab_plugin_firmwareupdater_link').show();
+            else
+                $('#tab_plugin_firmwareupdater_link').hide();
+        }
 
         self.onConfigHidden = function() {
             self.avrdudePathBroken(false);
