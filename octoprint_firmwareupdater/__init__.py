@@ -318,7 +318,7 @@ class FirmwareupdaterPlugin(octoprint.plugin.BlueprintPlugin,
 			"enable_postflash_delay": None,
 			"enable_postflash_gcode": None,
 			"disable_bootloadercheck": None,
-			"enable_tab": True
+			"enable_tab": False
 		}
 
 	#~~ Asset API
