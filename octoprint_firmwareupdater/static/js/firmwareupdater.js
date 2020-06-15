@@ -184,7 +184,7 @@ $(function() {
          });
 
         self.onBeforeBinding = function() {
-			self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.tab_enabled());
+			self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.enable_tab());
         }
 
         self.onAfterBinding = function() {
