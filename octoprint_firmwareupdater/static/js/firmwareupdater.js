@@ -188,7 +188,7 @@ $(function() {
         }
 
         self.onAfterBinding = function() {
-           _enableTab(self.tabEnabled());
+           self._enableTab(self.tabEnabled());
         }
 
         self.onStartup = function() {
@@ -515,7 +515,7 @@ $(function() {
             self._saveConfig();
 
             self.showPopup("success", gettext("Reload Web Interface"), "Please reload the web interface if enabled/disabled the Tab.");
-			_enableTab(self.tabEnabled());
+			self._enableTab(self.tabEnabled());
             self.tabEnabled(self.settingsViewModel.settings.plugins.firmwareupdater.tab_enabled());	
 			
             self.configurationDialog.modal("hide");
