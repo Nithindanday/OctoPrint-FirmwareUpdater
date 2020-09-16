@@ -74,8 +74,8 @@ To flash an ATmega-based board the tool `avrdude` needs to be installed on the O
 ##### Raspberry Pi
 
 ```
-sudo apt-get update
-sudo apt-get install avrdude
+sudo apt update
+sudo apt install avrdude
 ```
 
 ##### Ubuntu (12.04 - 14.04 - 15.04)
@@ -83,8 +83,8 @@ Information about the package needed can be found here [Ubuntu avrdude package](
 
 ```
 sudo add-apt-repository ppa:pmjdebruijn/avrdude-release
-sudo apt-get update
-sudo apt-get install avrdude
+sudo apt update
+sudo apt install avrdude
 ```
 
 #### Avrdude Configuration
@@ -112,11 +112,11 @@ Optional advanced settings are available for:
 To flash an AT90USB-based board the tool `dfu-programmer` needs to be installed on the OctoPrint host. 
 
 #### Dfu-programmer Installation
-A version of `dfu-programmer` can be installed via `apt-get install` but it is outdated.  Please build the latest version from [Github](https://github.com/dfu-programmer/dfu-programmer) using these commands:
+A version of `dfu-programmer` can be installed via `apt install` but it is outdated.  Please build the latest version from [Github](https://github.com/dfu-programmer/dfu-programmer) using these commands:
 
 ```
 cd ~
-sudo apt-get install autoconf libusb-1.0-0-dev
+sudo apt install autoconf libusb-1.0-0-dev
 git clone https://github.com/dfu-programmer/dfu-programmer.git
 cd dfu-programmer
 ./bootstrap.sh
@@ -156,7 +156,7 @@ Once installed, usbmount requires some tweaking to make it work well on the Rasp
 #### Usbmount Installation
 1. Install usbmount
 
-   `sudo apt-get install usbmount`
+   `sudo apt install usbmount`
 
 2. Configure usbmount so that the mount has the correct permissions for the 'pi' user
 
@@ -207,7 +207,7 @@ Bossac cannot be installed using a package manager as the packaged version is ou
 
 ```
 cd ~/
-sudo apt-get install libwxgtk3.0-dev libreadline-dev
+sudo apt install libwxgtk3.0-dev libreadline-dev
 wget https://github.com/shumatech/BOSSA/archive/1.7.0.zip
 unzip 1.7.0.zip
 cd BOSSA-1.7.0
@@ -226,11 +226,11 @@ Optional advanced settings are available for:
 To flash an STM32-based board the tool `stm32flash` needs to be installed on the OctoPrint host.
 
 #### STM32Flash Installation
-##### Install on Linux/RaspberryPi using apt-get
+##### Install on Linux/RaspberryPi using apt
 
 ```
-sudo apt-get update
-sudo apt-get install stm32flash
+sudo apt update
+sudo apt install stm32flash
 ```
 
 ##### Install on macOS using brew
